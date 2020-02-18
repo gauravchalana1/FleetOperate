@@ -1,25 +1,36 @@
 <div class="main-container">
   <div class="left-sidebar content-description">
     <h1 class="fleet">FleetOperate</h1>
-    <h2> Maecenas nec leo mauris.</h2>
-    <p class="introduction">Nullam eros nisi, rhoncus rhoncus erat ac, ullamcorper frigilla eros. Sed volutpat quam eget</p>
+    <h2>Maecenas nec leo mauris.</h2>
+    <p class="introduction">
+      Nullam eros nisi, rhoncus rhoncus erat ac, ullamcorper frigilla eros. Sed
+      volutpat quam eget
+    </p>
     <i class="material-icons">copyright</i>Copyright 2017 FleetOperate
   </div>
   <div class="right-sidebar content-description">
-    <div *ngIf="this.page == 0; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock><app-information (nextPagePress)="nextPage($event)"> </app-information></ng-template>
-    <ng-template #elseBlock> 
-        <div *ngIf="this.showDocuments; then thenShowBlock else elseHideBlock"></div>
-        <ng-template #thenShowBlock>
-            <app-file-list [companyName]="companyName" (showDocuments)="nextPageDocuments($event)" >
-                
-            </app-file-list>
-        </ng-template>
-        <ng-template #elseHideBlock>
-            <app-file-uploader (showDocuments)="nextPageDocuments($event)" [companyName]="companyName"> </app-file-uploader>
-        </ng-template>
-        
+    <div *ngIf="this.page == 0; then thenBlock; else elseBlock"></div>
+    <ng-template #thenBlock
+      ><app-information (nextPagePress)="nextPage($event)"> </app-information
+    ></ng-template>
+    <ng-template #elseBlock>
+      <div
+        *ngIf="this.showDocuments; then thenShowBlock; else elseHideBlock"
+      ></div>
+      <ng-template #thenShowBlock>
+        <app-file-list
+          [companyName]="companyName"
+          (showDocuments)="nextPageDocuments($event)"
+        >
+        </app-file-list>
+      </ng-template>
+      <ng-template #elseHideBlock>
+        <app-file-uploader
+          (showDocuments)="nextPageDocuments($event)"
+          [companyName]="companyName"
+        >
+        </app-file-uploader>
+      </ng-template>
     </ng-template>
-    
   </div>
 </div>

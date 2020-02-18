@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Output, EventEmitter } from '@angular/core'; 
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-file-uploader",
@@ -14,11 +15,14 @@ export class FileUploaderComponent implements OnInit {
   @Input() companyName;
   private fileName;
   private files: Array<Object>;
+  private showFidgetSpinner: Boolean;
   public formGroup = this.fb.group({
     file: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder, public http: HttpClient) {}
+  constructor(private fb: FormBuilder, public http: HttpClient, private spinner: NgxSpinnerService) {
+    this.showFidgetSpinner = true;
+  }
 
   ngOnInit() {  
   }
@@ -28,6 +32,8 @@ export class FileUploaderComponent implements OnInit {
   }
 
   public onFileChange(event) {
+    this.showFidgetSpinner = true;
+    this.spinner.show();
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
@@ -39,7 +45,9 @@ export class FileUploaderComponent implements OnInit {
         this.formGroup.patchValue({
           file: reader.result
         });
+        this.onSubmit();
       };
+      
     }
   }
 
@@ -47,27 +55,12 @@ export class FileUploaderComponent implements OnInit {
     this.showDocuments.next(true);
   }
 
-  public getFiles() {
-    var url = 'https://api.dropboxapi.com/2/files/list_folder';
-    var access_token = "sF1Dh0WGnSAAAAAAAAABQzILh82gU79v6HeLhsXhsOGxJaGBNgfYUmrc8oHntoFk";
-    var dataString = '{"path": "/test","recursive": false,"include_media_info": false,"include_deleted": false,"include_has_explicit_shared_members": false,"include_mounted_folders": true,"include_non_downloadable_files": true}';
-    var options = {
-                headers:  {
-                  'Authorization': 'Bearer ' + access_token,
-                  'Content-Type': 'application/json'
-              }
-    };
-    this.http.post(url, dataString, options).forEach((d) => {
-      console.log(d);
-    })
-  }
-
   public upload(fileName: string, fileContent: string): void {
     var url = "https://content.dropboxapi.com/2/files/upload";
     var pathToFolder = `/${this.companyName}/${this.fileName}`
     const base64data = fileContent.replace(/^data:.*,/, "");
     var access_token =
-      "sF1Dh0WGnSAAAAAAAAABQzILh82gU79v6HeLhsXhsOGxJaGBNgfYUmrc8oHntoFk";
+      "sF1Dh0WGnSAAAAAAAAABRcy7mxHxW6TFGfPOIgp9b3E83PE_cf7n4zihWjSvnwIb";
     var options = {
                 headers: {
                   "Content-Type": "application/octet-stream",
@@ -77,6 +70,8 @@ export class FileUploaderComponent implements OnInit {
     };
     this.http.post(url, base64data, options).forEach(resp => {
       console.log("resp received");
+      this.showFidgetSpinner = false;
+      this.spinner.hide();
     });
   }
 }

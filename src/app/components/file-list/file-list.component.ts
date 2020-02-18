@@ -19,9 +19,9 @@ export class FileListComponent implements OnInit {
 
   ngOnInit() {
     var url = 'https://api.dropboxapi.com/2/files/list_folder';
-    var access_token = "sF1Dh0WGnSAAAAAAAAABQzILh82gU79v6HeLhsXhsOGxJaGBNgfYUmrc8oHntoFk";
-    var pathToFolder = "/pa";
-    var dataString = '{"path": "/test","recursive": false,"include_media_info": false,"include_deleted": false,"include_has_explicit_shared_members": false,"include_mounted_folders": true,"include_non_downloadable_files": true}';
+    var access_token = "sF1Dh0WGnSAAAAAAAAABRcy7mxHxW6TFGfPOIgp9b3E83PE_cf7n4zihWjSvnwIb";
+    var pathToFolder = "/"+this.companyName;
+    var dataString = "{\"path\": \""+pathToFolder+"\",\"recursive\": false,\"include_media_info\": false,\"include_deleted\": false,\"include_has_explicit_shared_members\": false,\"include_mounted_folders\": true,\"include_non_downloadable_files\": true}";
     var options = {
                 headers:  {
                   'Authorization': 'Bearer ' + access_token,

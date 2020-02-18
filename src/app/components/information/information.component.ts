@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup} from '@angular/forms';
+import {FormControl, FormGroupDirective,FormBuilder, NgForm, Validators, FormGroup} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { Output, EventEmitter } from '@angular/core'; 
 
@@ -10,6 +10,7 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class InformationComponent implements OnInit {
   companyName: string;
+  infoForm: FormGroup;
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -17,11 +18,19 @@ export class InformationComponent implements OnInit {
   @Output() nextPagePress = new EventEmitter<string>();
   matcher = new MyErrorStateMatcher();
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
     this.companyName = '';
   }
 
+  formBuild() {
+    this.infoForm = this.fb.group({
+      company: ['', [Validators.required]],
+      email: this.emailFormControl
+    });
+  }
+
   ngOnInit() {
+    this.formBuild();
    
   }
 
