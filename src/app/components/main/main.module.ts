@@ -1,10 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material';
+import {MainComponent} from './main.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material';
+import { MatOptionModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+import { FileUploaderModule } from '../file-uploader/file-uploader.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    MainComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatOptionModule,
+    MatSelectModule,
+    FileUploaderModule,
   ]
 })
 export class MainModule { }

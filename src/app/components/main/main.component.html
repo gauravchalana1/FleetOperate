@@ -1,1 +1,86 @@
-<p>main works!</p>
+<div class="main-container">
+  <div class="left-sidebar content-description">
+    <h1 class="fleet">FleetOperate</h1>
+    <h2> Maecenas nec leo mauris.</h2>
+    <p class="introduction">Nullam eros nisi, rhoncus rhoncus erat ac, ullamcorper frigilla eros. Sed volutpat quam eget</p>
+    <i class="material-icons">copyright</i>Copyright 2017 FleetOperate
+  </div>
+  <div class="right-sidebar content-description">
+    <app-file-uploader> </app-file-uploader>
+    <form class="example-form" [formGroup]="myForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>Company Name </mat-label>
+        <input matInput placeholder="Company Name" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label> Country </mat-label>
+        <mat-select>
+          <mat-option> US </mat-option>
+          <mat-option> Canada </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Address </mat-label>
+        <input matInput placeholder="Address" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>City </mat-label>
+        <input matInput placeholder="City" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>State </mat-label>
+        <input matInput placeholder="State" />
+      </mat-form-field>
+      &nbsp; &nbsp;
+      <mat-form-field class="example-full-width">
+        <mat-label>Zipcode </mat-label>
+        <input matInput placeholder="Zipcode" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>First Name </mat-label>
+        <input matInput placeholder="First Name" />
+      </mat-form-field>
+      &nbsp; &nbsp;
+      <mat-form-field class="example-full-width">
+        <mat-label> Last Name </mat-label>
+        <input matInput placeholder="Last Name" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          [formControl]="emailFormControl"
+          [errorStateMatcher]="matcher"
+          placeholder="email"
+        />
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error
+          *ngIf="
+            emailFormControl.hasError('email') &&
+            !emailFormControl.hasError('required')
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      &nbsp; &nbsp;
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Telephone</mat-label>
+        <span matPrefix>+1 &nbsp;</span>
+        <input type="tel" matInput placeholder="Mobile" />
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <br />
+    </form>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.content-description {
+    float: left;
+    width: 500px;
+    border: 5px solid #D4F0F4;
+    height: 500px;
+}
+
+.main-container { 
+    margin : 25px auto;
+    width: 1020px;
+    
+ }
+
+ .left-sidebar {
+     background-color: #225996;
+     color: white;
+}
+
+.fleet {
+    margin: 30px;
+}
+
+.introduction{
+    margin-top: 10px;
+    margin-left: 35px;
+}
+
+.left-sidebar > h2 {
+    margin-top: 150px;
+    margin-left: 35px;
+}
+
+.left-sidebar > i{
+    margin-top: 100px;
+    margin-left: 15px;
+}
+
+.right-sidebar > i {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
