@@ -12,14 +12,48 @@ export class FileListComponent implements OnInit {
   @Input() companyName;
   public files: any;
   public testing: String
+  public authors: Array<any>
   constructor(public http: HttpClient) {
-    this.testing = 'checking '
+    this.testing = 'checking';
+    this.authors = [];
+
+   }
+  async getListOfAuthors() {
+    debugger;
+    for (var file of this.files) {
+      var author = await this.getAuthor(file.id);
+      console.log(author);
+      this.authors.push(author.users[0].user.display_name);
+    }
+    this.files.map((file,ind) => {
+      this.files[ind].owner = this.authors[ind];
+    })
+    console.log('checking files upd here', this.files);
+   }
+
+   async getAuthor(id): Promise<any> {
+    var url = "https://api.dropboxapi.com/2/sharing/list_file_members";
+    var access_token = "sF1Dh0WGnSAAAAAAAAABSI5Wl1p3GVfhhBDYbLXxIzoFk0VaFXxho-Tfc6CBxbnV";
+    var dataString = "{\"file\": \""+id+"\",\"include_inherited\": true,\"limit\": 100}";
+    var options = {
+                headers:  {
+                  'Authorization': 'Bearer ' + access_token,
+                  'Content-Type': 'application/json'
+              }
+    };
+    return new Promise((res,rej) => {
+      this.http.post(url, dataString, options).forEach((resp: any) => { 
+        res(resp);
+      })
+  
+    })
 
    }
 
   ngOnInit() {
+
     var url = 'https://api.dropboxapi.com/2/files/list_folder';
-    var access_token = "sF1Dh0WGnSAAAAAAAAABRcy7mxHxW6TFGfPOIgp9b3E83PE_cf7n4zihWjSvnwIb";
+    var access_token = "sF1Dh0WGnSAAAAAAAAABSI5Wl1p3GVfhhBDYbLXxIzoFk0VaFXxho-Tfc6CBxbnV";
     var pathToFolder = "/"+this.companyName;
     var dataString = "{\"path\": \""+pathToFolder+"\",\"recursive\": false,\"include_media_info\": false,\"include_deleted\": false,\"include_has_explicit_shared_members\": false,\"include_mounted_folders\": true,\"include_non_downloadable_files\": true}";
     var options = {
@@ -28,8 +62,14 @@ export class FileListComponent implements OnInit {
                   'Content-Type': 'application/json'
               }
     };
-    this.http.post(url, dataString, options).forEach((resp) => { 
-      this.files = resp;
+    this.http.post(url, dataString, options).forEach((resp: any) => { 
+      console.log(resp);
+      if ("entries" in resp) {
+
+      this.files = resp.entries;
+      this.getListOfAuthors();
+
+      }
 
     })
   }
