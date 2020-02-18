@@ -7,13 +7,16 @@
 
 .main-container { 
     margin : 25px auto;
-    width: 1020px;
-    
+    width: 1050px;
  }
 
  .left-sidebar {
      background-color: #225996;
      color: white;
+}
+
+.right-sidebar {
+    padding-left: 10px;
 }
 
 .fleet {
