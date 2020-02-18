@@ -60,7 +60,7 @@ export class FileUploaderComponent implements OnInit {
     var pathToFolder = `/${this.companyName}/${this.fileName}`
     const base64data = fileContent.replace(/^data:.*,/, "");
     var access_token =
-      "sF1Dh0WGnSAAAAAAAAABRcy7mxHxW6TFGfPOIgp9b3E83PE_cf7n4zihWjSvnwIb";
+      "sF1Dh0WGnSAAAAAAAAABR4kLNGFKNCjLv8xdjd6hjNZgvdP-mX-m0Vbi5V8h7hwA";
     var options = {
                 headers: {
                   "Content-Type": "application/octet-stream",

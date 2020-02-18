@@ -1,14 +1,28 @@
+<div class="fileUploader">
+  <h2>Upload Documents</h2>
+  <li>Operating Authority Letter</li>
+  <li>Certificate of Insurance</li>
+  <ul>
+    <li>$1,000,000 auto liability coverage</li>
+  </ul>
+  <ul>
+    <li>$100,000 Cargo coverage</li>
+  </ul>
 
-    <form (ngSubmit)="onSubmit()">
-      <input type="file" (change)="onFileChange($event)" />
-      <div *ngIf="this.showFidgetSpinner; then thenBlock; else elseBlock"></div>
-    <ng-template #thenBlock>
-      <div>
-        <ngx-spinner></ngx-spinner>
-      </div>
-    </ng-template>
-    <ng-template #elseBlock>
-    </ng-template>
-    </form>
-    <button (click)="this.enableDocuments($event)"> Show Documents </button>
-
+  <input
+    type="file"
+    class="inputfile"
+    style="color: #526D90;"
+    (change)="onFileChange($event)"
+  />
+  <div *ngIf="this.showFidgetSpinner; then thenBlock; else elseBlock"></div>
+  <ng-template #thenBlock>
+    <div>
+      <ngx-spinner></ngx-spinner>
+    </div>
+  </ng-template>
+  <ng-template #elseBlock> </ng-template>
+  <button class="button" (click)="this.enableDocuments($event)">
+    Show Documents
+  </button>
+</div>
