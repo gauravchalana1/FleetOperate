@@ -1,0 +1,76 @@
+<form class="example-form" ng-submit="nextPageBtn($event)" [formGroup]="myForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Company Name </mat-label>
+      <input matInput placeholder="Company Name" (keyup)="setCompanyName($event)" />
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label> Country </mat-label>
+      <mat-select>
+        <mat-option> US </mat-option>
+        <mat-option> Canada </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Address </mat-label>
+      <input matInput placeholder="Address" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>City </mat-label>
+      <input matInput placeholder="City" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>State </mat-label>
+      <input matInput placeholder="State" />
+    </mat-form-field>
+    &nbsp; &nbsp;
+    <mat-form-field class="example-full-width">
+      <mat-label>Zipcode </mat-label>
+      <input matInput placeholder="Zipcode" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name </mat-label>
+      <input matInput placeholder="First Name" />
+    </mat-form-field>
+    &nbsp; &nbsp;
+    <mat-form-field class="example-full-width">
+      <mat-label> Last Name </mat-label>
+      <input matInput placeholder="Last Name" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        [formControl]="emailFormControl"
+        [errorStateMatcher]="matcher"
+        placeholder="email"
+      />
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <mat-error
+        *ngIf="
+          emailFormControl.hasError('email') &&
+          !emailFormControl.hasError('required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    &nbsp; &nbsp;
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Telephone</mat-label>
+      <span matPrefix>+1 &nbsp;</span>
+      <input type="tel" matInput placeholder="Mobile" />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <br />
+    <button type="submit" (click)="nextPageBtn($event)"> Next Page </button>
+  </form>

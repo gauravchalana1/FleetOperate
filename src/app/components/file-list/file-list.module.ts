@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FileListComponent } from './file-list.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [FileListComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [FileListComponent]
 })
 export class FileListModule { }

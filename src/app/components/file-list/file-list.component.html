@@ -1,6 +1,7 @@
 <ul>
-    <li *ngFor="let item of this.files; let i = index">
+    <li *ngFor="let item of this.files.entries; let i = index">
       {{i}} {{item.name}}
     </li>
   </ul>
+<button (click)="prevPage($event)"> Upload more documents </button>
   
