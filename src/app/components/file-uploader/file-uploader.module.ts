@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FileUploaderComponent } from './file-uploader.component';
-import { HttpClientModule } from '@angular/common/http';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FileUploaderComponent } from "./file-uploader.component";
+import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
@@ -14,8 +14,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule
   ],
   exports: [FileUploaderComponent]
 })
-export class FileUploaderModule { }
+export class FileUploaderModule {}

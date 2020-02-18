@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { Output, EventEmitter } from '@angular/core'; 
+import { Output, EventEmitter } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
+import { access_token } from '../../constants.js';
 
 @Component({
   selector: "app-file-uploader",
@@ -20,12 +21,15 @@ export class FileUploaderComponent implements OnInit {
     file: [null, Validators.required]
   });
 
-  constructor(private fb: FormBuilder, public http: HttpClient, private spinner: NgxSpinnerService) {
+  constructor(
+    private fb: FormBuilder,
+    public http: HttpClient,
+    private spinner: NgxSpinnerService
+  ) {
     this.showFidgetSpinner = true;
   }
 
-  ngOnInit() {  
-  }
+  ngOnInit() {}
 
   public onSubmit(): void {
     this.upload(this.fileName, this.formGroup.get("file").value);
@@ -47,7 +51,6 @@ export class FileUploaderComponent implements OnInit {
         });
         this.onSubmit();
       };
-      
     }
   }
 
@@ -57,20 +60,17 @@ export class FileUploaderComponent implements OnInit {
 
   public upload(fileName: string, fileContent: string): void {
     var url = "https://content.dropboxapi.com/2/files/upload";
-    var pathToFolder = `/${this.companyName}/${this.fileName}`
+    var pathToFolder = `/${this.companyName}/${this.fileName}`;
     const base64data = fileContent.replace(/^data:.*,/, "");
-    var access_token =
-<<<<<<< HEAD
-      "sF1Dh0WGnSAAAAAAAAABSI5Wl1p3GVfhhBDYbLXxIzoFk0VaFXxho-Tfc6CBxbnV";
-=======
-      "sF1Dh0WGnSAAAAAAAAABR4kLNGFKNCjLv8xdjd6hjNZgvdP-mX-m0Vbi5V8h7hwA";
->>>>>>> d1cd2641c89b67a62f80294141f3a4ac0c61e981
     var options = {
-                headers: {
-                  "Content-Type": "application/octet-stream",
-                  "Authorization": "Bearer " + access_token,
-                  "Dropbox-API-Arg": "{\"path\": \""+pathToFolder+"\",\"mode\": \"overwrite\",\"autorename\": true,\"mute\": false}",
-                }
+      headers: {
+        "Content-Type": "application/octet-stream",
+        Authorization: "Bearer " + access_token,
+        "Dropbox-API-Arg":
+          '{"path": "' +
+          pathToFolder +
+          '","mode": "overwrite","autorename": true,"mute": false}'
+      }
     };
     this.http.post(url, base64data, options).forEach(resp => {
       console.log("resp received");

@@ -9,19 +9,6 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-  },
-  {
-    path: 'testing',
-    component: FileUploaderComponent
-  },
-  {
-    path: 'testhere',
-    component: FileListComponent
-
-  },
-  {
-    path: 'upd', 
-    component: InformationComponent
   }
 ];
 const config = RouterModule.forRoot(routes);

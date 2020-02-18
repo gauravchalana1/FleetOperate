@@ -11,10 +11,12 @@
   <div class="right-sidebar content-description">
     <div *ngIf="this.page == 0; then thenBlock; else elseBlock"></div>
     <ng-template #thenBlock>
-        <app-information (nextPagePress)="nextPage($event)"> </app-information>
+      <app-information (nextPagePress)="nextPage($event)"> </app-information>
     </ng-template>
     <ng-template #elseBlock>
-      <div *ngIf="this.showDocuments; then thenShowBlock; else elseHideBlock"></div>
+      <div
+        *ngIf="this.showDocuments; then thenShowBlock; else elseHideBlock"
+      ></div>
       <ng-template #thenShowBlock>
         <app-file-list
           [companyName]="companyName"
